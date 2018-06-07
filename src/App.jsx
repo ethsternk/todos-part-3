@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import todoList from './todos.json';
-import TodoList from './TodoList.jsx'
+import TodoList from './TodoList.jsx';
+import { Route, Switch, Link } from 'react-router-dom';
 
 class App extends Component {
   state = {
@@ -56,12 +57,53 @@ class App extends Component {
           <input className="new-todo" placeholder="What do you need to do today?" onKeyPress={this.handleKeyPress} autoFocus />
         </header>
         <section className="main">
-          <TodoList todos={this.state.todos}>
-            <button className="destroy" onClick={this.handleDestroy}></button>
-          </TodoList>
+          <Switch>
+            <Route
+              exact path='/'
+              render={(props) =>
+                <TodoList todos={this.state.todos}>
+                  {<button className="destroy" onClick={this.handleDestroy}></button>}
+                </TodoList>
+              }
+            />
+            <Route
+              path='/active'
+              render={(props) =>
+                <TodoList todos={this.state.todos.filter(todo => !todo.completed)}>
+                  {<button className="destroy" onClick={this.handleDestroy}></button>}
+                </TodoList>
+              }
+            />
+            <Route
+              path='/completed'
+              render={(props) =>
+                <TodoList todos={this.state.todos.filter(todo => todo.completed)}>
+                  {<button className="destroy" onClick={this.handleDestroy}></button>}
+                </TodoList>
+              }
+            />
+          </Switch>
         </section>
         <footer className="footer">
+          {/* <!-- This should be `0 items left` by default --> */}
           <span className="todo-count"><strong>0</strong> item(s) left</span>
+          <ul className="filters">
+            <li>
+              <Link to="/">
+                All
+              </Link>
+            </li>
+            <li>
+              <Link to="/active">
+                Active
+              </Link>
+            </li>
+            <li>
+              <Link to="/completed">
+                Completed
+              </Link>
+            </li>
+          </ul>
           <button className="clear-completed" onClick={this.handleClear}>Clear completed</button>
         </footer>
       </div>
