@@ -1,0 +1,38 @@
+[
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "become batman",
+    "completed": false
+  },
+  {
+    "userId": 1,
+    "id": 2,
+    "title": "sadness",
+    "completed": true
+  },
+  {
+    "userId": 1,
+    "id": 3,
+    "title": "eat cake",
+    "completed": true
+  },
+  {
+    "userId": 1,
+    "id": 4,
+    "title": "become dog",
+    "completed": false
+  },
+  {
+    "userId": 1,
+    "id": 5,
+    "title": "play chess",
+    "completed": false
+  },
+  {
+    "userId": 1,
+    "id": 6,
+    "title": "coup the government",
+    "completed": false
+  }
+]
